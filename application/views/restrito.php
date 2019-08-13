@@ -22,7 +22,7 @@
  				<ul class="nav nav-tabs">
  				
  					
- 					<li> <a href="#tab_usuarios" role="tab" data-toggle="tab">Usuários</a></li>
+ 					<li class="active"> <a href="#tab_usuarios" role="tab" data-toggle="tab">Usuários</a></li>
  				</ul>
 
 	 			<div class="tab-content">

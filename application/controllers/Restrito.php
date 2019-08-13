@@ -289,10 +289,7 @@ public function ajax_delete_usuario_data(){
 									<i class= "fa fa-edit"></i>
 								</button>
 
-									<button  class= "btn btn-primary btn-colors" users_id ="'.$user->users_id.'"> COR &nbsp;
-									<i class= "fa fa-edit"></i>
-								</button>
-
+								
 
 								<button  class= "btn btn-danger btn-del-usuario" users_id ="'.$user->users_id.'">
 									<i class= "fa fa-times"></i>
