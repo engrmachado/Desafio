@@ -37,7 +37,7 @@ Pré-requisito
 					<div class="section-title">
 							<h2>|Sobre o Site|</h2>
 							<p> Para acessar a área restrita (Login).<br/> Utilize Usuário: master,<br/> Senha: master.<br/>
-								Foi implementado as função: inserir, deletar, editar,listar, datatable, search e dentre outras funções.	</p>
+								Foi implementado as função: inserir, deletar, editar,listar, datatable, search e paginação dentre outras funções não mensionadas.	</p>
 					</div>
 						<div class="section-title">
 							<h2>Sobre o Rogério Machado</h2>
