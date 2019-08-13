@@ -41,6 +41,34 @@ $("#form_usuarios").submit(function() {
 		return false;
 	});
 
+$("#form_usuarios_outros").submit(function() {
+
+		$.ajax({
+			type: "POST",
+			url: BASE_URL + "restrito/ajax_salvar_usuarios_outros",
+			dataType: "json",
+			data: $(this).serialize(),
+			beforeSend: function() {
+				clearErrors();
+				$("#btn_salvar_user_outros").siblings(".help-block").html(loadingImg("Verificando..."));
+			},
+			success: function(response) {
+				console.log(response);
+				clearErrors();
+				if (response["status"]) {
+					$("#modal_usuarios_outros").modal("hide");
+					swal("Sucesso!","Usuários salvo com sucesso!", "success");
+					dt_usuarios.ajax.reload();
+				
+				} else {
+					showErrorsModal(response["error_list"])
+				}
+			}
+		})
+
+		return false;
+	});
+
 $("#btn_listar_usuarios").click(function() {
 
 		$.ajax({
@@ -63,6 +91,27 @@ $("#btn_listar_usuarios").click(function() {
 	});
 
 	
+$("#btn_listar_usuarios_outros").click(function() {
+
+		$.ajax({
+			type: "POST",
+			url: BASE_URL + "restrito/ajax_get_usuarios_data",
+			dataType: "json",
+			data: {"users_id": $(this).attr("users_id")},
+			success: function(response) {
+				console.log(response);
+				clearErrors();
+				$("#form_usuarios_outros")[0].reset();
+				$.each(response["input"], function(id, value) {
+					$("#"+id).val(value);
+				});
+				$("#modal_usuarios_outros").modal();
+				document.getElementById('user_password_confirm').value="";
+			}
+		})
+
+		return false;
+	});
 
 
 
@@ -71,7 +120,7 @@ $("#btn_listar_usuarios").click(function() {
 		$(".btn-editar-usuario").click(function() {
 			$.ajax({
 				type: "POST",
-			url: BASE_URL + "restrito/ajax_get_usuarios_data",
+			url: BASE_URL + "restrito/ajax_get_usuarios_data_logado",
 			dataType: "json",
 				data: {"users_id": $(this).attr("users_id")},
 				success: function(response) {
@@ -84,6 +133,24 @@ $("#btn_listar_usuarios").click(function() {
 				}
 			})
 		});
+
+		$(".btn-editar-usuario-outros").click(function() {
+			$.ajax({
+				type: "POST",
+			url: BASE_URL + "restrito/ajax_get_usuarios_data",
+			dataType: "json",
+				data: {"users_id": $(this).attr("users_id")},
+				success: function(response) {
+					clearErrors();
+					$("#form_usuarios_outros")[0].reset();
+					$.each(response["input"], function(id, value) {
+						$("#"+id+"_outros").val(value);
+					});
+					$("#modal_usuarios_outros").modal();
+				}
+			})
+		});
+
 		$(".btn-del-usuario").click(function() {
 
 			users_id = $(this);

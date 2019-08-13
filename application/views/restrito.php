@@ -120,7 +120,7 @@
 				<div class="form-group">
 				<label class="col-lg-2 control-label">E-mail</label>
 				 	<div class="col-lg-10">
-				 	<input id="user_email" name="user_email" class="form-control">
+				 	<input id="user_email" type="email" name="user_email" class="form-control">
 				  	<span class="help-block"></span>
 				 </div>
 				</div>
@@ -133,7 +133,7 @@
 				<div class="form-group">
 				 <label class="col-lg-2 control-label">Confirmar E-mail</label>
 				 	<div class="col-lg-10">
-				 	<input id="user_email_confirm" name="user_email_confirm" class="form-control">
+				 	<input id="user_email_confirm" type="email" name="user_email_confirm" class="form-control">
 				 
 				 	<span class="help-block"></span>
 				 </div>
@@ -159,6 +159,78 @@
 
 				<div class="form-group text-center">
 				 <button type="submit" id="btn_salvar_user" class="btn btn-primary">
+				 <i class="fa fa-save">&nbsp;&nbsp;Salvar</i>
+				</button>
+				<span class="help-block"></span>
+				</div>
+			  </form>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div id="modal_usuarios_outros" class="modal fade">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">x</button>
+				<h4 class="modal-title">// Usuários</h4>
+			</div>
+
+			<div class="modal-body">
+				<form id="form_usuarios_outros">
+				 <input id="users_id_outros" name="users_id" hidden>
+				 	<div class="form-group">
+				 		<label class="col-lg-2 control-label">Login</label>
+				 	<div class="col-lg-10">
+				 	<input id="user_login_outros" name="user_login" class="form-control" maxlength="100">
+				 	<span class="help-block"></span>
+				 </div>
+				</div>
+				<div class="form-group">
+				 <label class="col-lg-2 control-label">Nome Completo</label>
+				 	<div class="col-lg-10">
+				 	<input id="user_full_name_outros" name="user_full_name" class="form-control" maxlength="100">
+				 	<span class="help-block"></span>
+				 </div>
+				</div>
+
+				<div class="form-group">
+				 <label class="col-lg-2 control-label">Escolha a cor</label>
+				 	<div class="col-lg-10">
+				 	<input type="color" id="user_color_outros" name="user_color" class="form-control">
+				 	<span class="help-block"></span>
+				 </div>
+				</div>
+
+
+				<div class="form-group">
+				<label class="col-lg-2 control-label">E-mail</label>
+				 	<div class="col-lg-10">
+				 	<input id="user_email_outros" type="email" name="user_email" class="form-control">
+				  	<span class="help-block"></span>
+				 </div>
+				</div>
+
+			
+
+				<input type="hidden" id="user_password_outros" name="user_password" class="form-control">
+
+
+				<div class="form-group">
+				 <label class="col-lg-2 control-label">Confirmar E-mail</label>
+				 	<div class="col-lg-10">
+				 	<input id="user_email_confirm_outros" type="email" name="user_email_confirm" class="form-control">
+				 
+				 	<span class="help-block"></span>
+				 </div>
+				</div>
+
+
+
+				<div class="form-group text-center">
+				 <button type="submit" id="btn_salvar_user_outros" form="form_usuarios_outros" class="btn btn-primary">
 				 <i class="fa fa-save">&nbsp;&nbsp;Salvar</i>
 				</button>
 				<span class="help-block"></span>

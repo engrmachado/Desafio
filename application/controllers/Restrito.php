@@ -190,6 +190,80 @@ public function ajax_salvar_usuarios(){
 
 	}	
 
+public function ajax_salvar_usuarios_outros(){
+		
+	 if(!$this->input->is_ajax_request()){
+			exit("nenhum acesso de script direto é permitido!");
+		} //função para evitar acesso de invasão (segurança)
+
+
+	
+		$json = array();
+		$json["status"] = 1;
+		$json["error_list"] = array();
+
+
+		$this->load->model("users_model");
+
+		$data = $this->input->post();
+
+			if (empty($data["user_login"])) {
+			$json["error_list"]["#user_login"] = "Nome do curso é obrigatório!";
+		
+		} else {
+			if ($this->users_model->is_duplicated("user_login", $data["user_login"], $data["users_id"])) {
+				$json["error_list"]["#user_login"] = "Login já existente!";
+			}
+		}
+
+		if (empty($data["user_full_name"])) {
+			$json["error_list"]["#user_full_name"] = "Nome completo é obrigatório!";
+		
+		} 
+
+
+
+		if (empty($data["user_email"])) {
+			$json["error_list"]["#user_email"] = "E-mail é obrigatorio!";
+		
+		} else {
+			if ($this->users_model->is_duplicated("user_email", $data["user_email"], $data["users_id"])) {
+				$json["error_list"]["#user_email"] = "e-mail já existente!";
+			} else {
+				if ($data["user_email"] != $data["user_email_confirm"]){
+					$json["error_list"]["#user_email"] ="";
+					$json["error_list"]["#user_email_confirm"] = "E-mail não confere";
+
+				}
+			}
+		}
+
+		$data["password_hash"] = $data["user_password"];
+		unset($data["user_password"]);
+		unset($data["user_email_confirm"]);
+		
+		if (!empty($json["error_list"])) {
+			$json["status"] = 0;
+		} else {
+
+			if (empty($data["users_id"])) {
+				$this->users_model->insert($data);
+			} else {
+				
+				$users_id = $data["users_id"];
+				unset($data["users_id"]);
+//die(json_encode($data));
+				$this->users_model->update($users_id, $data);
+			}
+		}
+
+
+
+
+		echo json_encode($json);
+
+	}
+
 	public function ajax_get_usuarios_data(){
 		
 	 if(!$this->input->is_ajax_request()){
@@ -230,7 +304,6 @@ public function ajax_salvar_usuarios(){
 		echo json_encode($json);
 
 	}	
-
 
 
 
@@ -285,7 +358,7 @@ public function ajax_delete_usuario_data(){
 
 								
 				$row[] = '<div style="display: inline=block;">
-								<button  class= "btn btn-primary btn-editar-usuario" users_id ="'.$user->users_id.'">
+								<button  class= "btn btn-primary btn-editar-usuario-outros" users_id ="'.$user->users_id.'">
 									<i class= "fa fa-edit"></i>
 								</button>
 

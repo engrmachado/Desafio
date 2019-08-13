@@ -47,6 +47,7 @@ class Users_model extends CI_Model {
 	public function update($id, $data) {
 		$this->db->where("users_id", $id);
 		$this->db->update("tbl_users", $data);
+
 	}
 	public function delete($id) {
 		$this->db->where("users_id", $id);
